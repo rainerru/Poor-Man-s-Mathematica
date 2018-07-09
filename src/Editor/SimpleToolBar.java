@@ -11,11 +11,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 
-protected class SimpleToolBar extends ToolBar
+class SimpleToolBar extends ToolBar
 {
 
-	protected SimpleToolBar ()
+	protected SimpleToolBar () throws Exception
 	{
+		super();
+
 		//------------------------------------------------------
 		// ----- Add dropdown box ------------------------------
 		// -----------------------------------------------------
@@ -66,7 +68,8 @@ protected class SimpleToolBar extends ToolBar
 
 		Button cmdLoad = new Button("Load");
 
-		super(addBox, cmdRemove, cmdEdit, new Separator(), cmdSave, cmdSaveAs, cmdLoad);
+		this.getItems().addAll(addBox, cmdRemove, cmdEdit, new Separator(), cmdSave, cmdSaveAs, cmdLoad);
+		// uper(addBox, cmdRemove, cmdEdit, new Separator(), cmdSave, cmdSaveAs, cmdLoad);
 	}
 
 }
