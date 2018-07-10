@@ -68,8 +68,11 @@ class SimpleToolBar extends ToolBar
 
 		Button cmdLoad = new Button("Load");
 
-		this.getItems().addAll(addBox, cmdRemove, cmdEdit, new Separator(), cmdSave, cmdSaveAs, cmdLoad);
-		// uper(addBox, cmdRemove, cmdEdit, new Separator(), cmdSave, cmdSaveAs, cmdLoad);
+		this.getItems().addAll(
+			addBox, cmdRemove, cmdEdit,
+			new Separator(),
+			cmdSave, cmdSaveAs, cmdLoad
+		);
 	}
 
 }
