@@ -2,7 +2,7 @@ package Editor.Items;
 
 import java.util.LinkedList;
 
-public class ItemList implements Item
+public class ItemList extends Item
 {
 
 	private LinkedList<Item> listOfItems;

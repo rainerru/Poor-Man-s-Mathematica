@@ -12,13 +12,13 @@ public class Container <T> extends Item
 
 	public Container ( String text )
 	{
-		this.text = text;
+		super( text );
 		this.isEditable = true;
 	}
 	
 	public Container ( String text, boolean isEditable, T data )
 	{
-		this.text = text;
+		super( text );
 		this.isEditable = isEditable;
 		this.data = data;
 	}

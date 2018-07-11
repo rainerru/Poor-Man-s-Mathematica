@@ -11,12 +11,15 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import Editor.Items.*;
+
 public class Editor extends Application
 {
 
+	Item i1 = new Container<Integer>("description", true, new Integer(2) );
 	//BookList model = new BookList();
-	ObservableList<String> myList = FXCollections.observableArrayList();
-	ListView<String> listView = new ListView<>(myList);
+	ObservableList<Item> myList = FXCollections.observableArrayList( i1 );
+	ListView<Item> listView = new ListView<>(myList);
 
 	// for listview see https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
 	// particularly the colored thing (search for "chocolate")
