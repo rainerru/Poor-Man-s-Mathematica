@@ -6,10 +6,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToolBar;
+
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import javafx.util.Callback;
 
 import Editor.Items.*;
 
@@ -30,10 +38,12 @@ public class Editor extends Application
 	public void start (final Stage stage) throws Exception
 	{
 
-		ToolBar toolBar = new SimpleToolBar();
+		//listView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>()
+		listView.setCellFactory( param -> new MCell() );
 
+		ToolBar toolBar = new SimpleToolBar();
 		BorderPane root = new BorderPane();
-		
+	
 		root.setTop(toolBar);
 		root.setCenter(listView);
 		Scene scene = new Scene(root, 800, 700);
