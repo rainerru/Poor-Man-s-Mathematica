@@ -2,6 +2,9 @@ package Editor;
 
 import java.io.FileInputStream;
 
+import javafx.collections.ObservableList;
+
+import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Separator;
@@ -11,10 +14,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 
+import Editor.Items.Item;
+
 class SimpleToolBar extends ToolBar
 {
 
-	protected SimpleToolBar () throws Exception
+	protected SimpleToolBar ( ObservableList<Item> list, ListView<Item> listView) throws Exception
 	{
 		super();
 
@@ -33,7 +38,7 @@ class SimpleToolBar extends ToolBar
 
 		MenuButton addBox = new MenuButton("Add", imageView, addSection, addText, addMath);
 
-		addSection.setOnAction(new AddHandler());
+		addSection.setOnAction( new AddHandler( list ) );
 
 		//------------------------------------------------------
 		// ----- Remove button ---------------------------------
@@ -46,6 +51,8 @@ class SimpleToolBar extends ToolBar
 		imageView.setScaleY(0.8);
 		Button cmdRemove = new Button("Remove", imageView);
 		//cmdRemove.setOnAction(new RemoveHandler());
+
+		cmdRemove.setOnAction( new RemoveHandler( list, listView ) );
 
 		//------------------------------------------------------
 		// ----- Edit button -----------------------------------

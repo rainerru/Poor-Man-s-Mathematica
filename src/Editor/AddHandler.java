@@ -3,20 +3,26 @@ package Editor;
 import java.util.Optional;
 import java.lang.IllegalArgumentException;
 
+import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
 
+import Editor.Items.*;
+
 class AddHandler implements EventHandler<ActionEvent>
 {
 
-	/*protected AddHandler ( ref ref )
+	ObservableList<Item> referencedList;
+
+	protected AddHandler ( ObservableList<Item> list )
 	{
 		super();
-		this.ref = ref;
-	}*/
+		this.referencedList = list;
+	}
 
 	@Override
 	public void handle(ActionEvent event)
@@ -35,13 +41,13 @@ class AddHandler implements EventHandler<ActionEvent>
 			Optional<String> result = dialog.showAndWait();
 			if (result.isPresent() && !result.get().equals("") )
 			{
-					// do something with result == input
+				// do something with result == input   with    result.get()
+				Item newItem = new Item( result.get() );
+				this.referencedList.add( newItem );
 			} else
 			{
 				throw new IllegalArgumentException();
 			}
-
-		// now add to model?
 
 		} catch ( IllegalArgumentException e )
 		{

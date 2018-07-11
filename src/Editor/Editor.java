@@ -17,16 +17,21 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import javafx.util.Callback;
+// import javafx.util.Callback;
 
 import Editor.Items.*;
+
+import MathFunction.*;
 
 public class Editor extends Application
 {
 
-	Item i1 = new Container<Integer>("description", true, new Integer(2) );
+	Item i1 = new Container<Integer>("description of an Integer", true, new Integer(2) );
+	Item i2 = new Container<Double>("description of a Double", true, new Double(3.5) );
+	Item i3 = new Container<Item>("description of an Cont<Item>", true, new Item("haha") );
+	Item i4 = new Container<Polynomial>("description of an Poly with constant 1", true, new Polynomial(new double[]{1,2,3}) );
 	//BookList model = new BookList();
-	ObservableList<Item> myList = FXCollections.observableArrayList( i1 );
+	ObservableList<Item> myList = FXCollections.observableArrayList( i1, i2, i3, i4);
 	ListView<Item> listView = new ListView<>(myList);
 
 	// for listview see https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
@@ -41,7 +46,7 @@ public class Editor extends Application
 		//listView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>()
 		listView.setCellFactory( param -> new MCell() );
 
-		ToolBar toolBar = new SimpleToolBar();
+		ToolBar toolBar = new SimpleToolBar( myList, listView );
 		BorderPane root = new BorderPane();
 	
 		root.setTop(toolBar);
@@ -50,6 +55,7 @@ public class Editor extends Application
 		stage.setTitle("Poor Man's Mathematica - New Notebook");
 		stage.setScene(scene);
 		stage.show();
+
 	}
 
 }

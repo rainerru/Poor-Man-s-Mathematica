@@ -16,6 +16,14 @@ public class Polynomial implements MathFunction
 		System.arraycopy(newCoefficients, 0, coefficients, 0, newCoefficients.length);
 	}
 
+	public double[] getCoefficients () { return this.coefficients; }
+
+	public String toString ()
+ 	{
+		// use stringbuilder???
+		return "Poly:" + this.coefficients[0];
+	}
+
 	public double evaluate ( double x )
 	{
 		double sum = 0;
