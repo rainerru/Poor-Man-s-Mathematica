@@ -64,7 +64,7 @@ class SimpleToolBar extends ToolBar
 		imageView.setScaleX(0.8);
 		imageView.setScaleY(0.8);
 		Button cmdEdit = new Button("Edit", imageView);
-		//cmdGetInfo.setOnAction(new GetInfoHandler());
+		cmdEdit.setOnAction(new EditHandler( list, listView));
 
 		//------------------------------------------------------
 		// ----- Other buttons ---------------------------------
