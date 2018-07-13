@@ -8,7 +8,7 @@ public class Container <T> extends Item
 
 	public T getData () { return this.data; }
 
-	public void editData ( T data )	{	if ( this.isEditable ) this.data = data; }
+	public void setData ( T data )	{	if ( this.isEditable ) this.data = data; }
 
 	public Container ( String text )
 	{

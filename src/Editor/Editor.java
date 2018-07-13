@@ -26,10 +26,10 @@ import MathFunction.*;
 public class Editor extends Application
 {
 
-	Item i1 = new Container<Integer>("description of an Integer", true, new Integer(2) );
-	Item i2 = new Container<Double>("description of a Double", true, new Double(3.5) );
-	Item i3 = new Container<Item>("description of an Cont<Item>", true, new Item("haha") );
-	Item i4 = new Container<Polynomial>("description of an Poly with constant 1", true, new Polynomial(new double[]{1,2,3}) );
+	Item i1 = new Container<Integer>("res1 (int)", true, new Integer(2) );
+	Item i2 = new Container<Double>("res2 (double)", true, new Double(3.5) );
+	Item i3 = new Container<Item>("a Container<Item>", true, new Item("haha") );
+	Item i4 = new Container<Polynomial>("poly1:  of an Poly with constant 1", true, new Polynomial(new double[]{1,2,3}) );
 	//BookList model = new BookList();
 	ObservableList<Item> myList = FXCollections.observableArrayList( i1, i2, i3, i4);
 	ListView<Item> listView = new ListView<>(myList);

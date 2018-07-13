@@ -13,6 +13,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ListView;
 
 import Editor.Items.*;
+import MathFunction.*;
 
 class EditHandler implements EventHandler<ActionEvent>
 {
@@ -27,7 +28,6 @@ class EditHandler implements EventHandler<ActionEvent>
 		this.referencedListView = listView;
 	}
 
-
 	@Override
 	public void handle(ActionEvent event)
 	{ 
@@ -36,78 +36,69 @@ class EditHandler implements EventHandler<ActionEvent>
 		if ( !( toEdit == null) )
 		{
 
+			TextInputDialog dialog;
 
 			try
 			{
-				TextInputDialog dialog;
-				dialog = new TextInputDialog( toEdit.display() );
-				dialog.setTitle("Editing...:");
-				dialog.setHeaderText("Old: " + toEdit.display() );
-				dialog.setContentText("something: ");
+				
 
-
-
-
-			if ( toEdit instanceof Container )
-			{
-				Container cont = (Container) toEdit;
-				if ( cont.getData() instanceof Integer || cont.getData() instanceof Double )
+				if ( toEdit instanceof Container )
 				{
-					//Container<Integer> cont1 = (Container<Integer>) cont;
-					this.setText( toEdit.display() + " :int: " + cont.getData() );
-					circ.setFill(Color.RED);
-				}
-				else if ( cont.getData() instanceof Polynomial )
-				{
-					this.setText( toEdit.display() + " :polynomial: " + cont.getData() );
-					circ.setFill(Color.BLUE);
+					Container cont = (Container) toEdit;
+					if ( cont.getData() instanceof Integer || cont.getData() instanceof Double )
+					{
+						@SuppressWarnings("unchecked")
+						Container<Integer> contInt = cont;
+						int oldVal = (int) contInt.getData();
+						dialog = new TextInputDialog( Integer.toString( oldVal ) );
+						dialog.setTitle("Edit value:");
+						dialog.setHeaderText("Old value: " + oldVal );
+						dialog.setContentText("New value: ");
+
+						Optional<String> result = dialog.showAndWait();
+						if (result.isPresent() && !result.get().equals("") )
+						{
+							Integer newVal = Integer.parseInt( result.get() );
+							contInt.setData( newVal );
+							// do something with result == input   with    result.get()
+							//Item newItem = new Item( result.get() );
+							//this.referencedList.add( null );
+							referencedListView.refresh();
+						} else
+						{
+							throw new IllegalArgumentException();
+						}
+
+
+					}
+					else if ( cont.getData() instanceof Polynomial )
+					{
+						
+					}
+					else
+					{
+						
+					}
+				
+				//this.setText( item.display() + " :int: " + cont );
 				}
 				else
 				{
-					this.setText( "its a container but whats inside??? :: " + toEdit.display() );
-					circ.setFill(Color.GRAY);
+					
 				}
-				
-				//this.setText( item.display() + " :int: " + cont );
-			}
-			else
-			{
-				this.setText( toEdit.display() );
-				circ.setFill(Color.WHITE);
-			}
-			/*if ( item instanceof Container<Double> )
-			{
-				Container<Double> cont = (Container<Double>) item;
-				circ.setFill(Color.BLUE);
-				this.setText( item.display() + " :double: " + cont );
-			}*/
-
-			setGraphic(circ);
-
-
-
-
-
-
-
-
-				Optional<String> result = dialog.showAndWait();
-				if (result.isPresent() && !result.get().equals("") )
+				/*if ( item instanceof Container<Double> )
 				{
-					// do something with result == input   with    result.get()
-					//Item newItem = new Item( result.get() );
-					//this.referencedList.add( newItem );
-				} else
-				{
-					throw new IllegalArgumentException();
-				}
+					Container<Double> cont = (Container<Double>) item;
+					circ.setFill(Color.BLUE);
+					this.setText( item.display() + " :double: " + cont );
+				}*/
 
 			} catch ( IllegalArgumentException e )
 			{
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Error");
-					alert.setHeaderText("Error while adding a book");
-					alert.setContentText("Invalid input for a book or canceled!");
+					alert.setHeaderText("Error while editing");
+					alert.setContentText("Invalid input");
 
 					alert.showAndWait();
 			}

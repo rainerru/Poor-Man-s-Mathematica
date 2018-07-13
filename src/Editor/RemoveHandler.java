@@ -26,10 +26,7 @@ class RemoveHandler implements EventHandler<ActionEvent>
 	public void handle(ActionEvent event)
 	{
 		Item toRemove = referencedListView.getSelectionModel().getSelectedItem();
-		if ( !( toRemove == null) )
-		{
-			referencedList.remove( toRemove );
-		}
+		referencedList.remove( toRemove );
 	}
 
 }
